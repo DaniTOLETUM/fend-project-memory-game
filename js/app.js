@@ -2,6 +2,21 @@
  * Create a list that holds all of your cards
  */
 
+const cardList = ["fa-diamond", "fa-paper-plane-o", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-bomb", "fa-diamond", "fa-paper-plane-o", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-bomb"];
+
+ ////* Variables list*////
+
+/* Number of clicks */
+const clicksNumber = 0;
+/* Number of matches done */
+const matches = 0;
+/* List of opened cards */
+const openedCards = [];
+/* Timer */
+const time = 0;
+
+
+
 
 /*
  * Display the cards on the page
@@ -9,6 +24,9 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
