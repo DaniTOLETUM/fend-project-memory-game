@@ -2,28 +2,29 @@
  * Create a list that holds all of your cards
  */
 
-const cardList = ["fa-diamond", "fa-paper-plane-o", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-bomb", "fa-diamond", "fa-paper-plane-o", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-bomb"];
-
- ////* Variables list*////
-
-/* Number of clicks */
-const clicksNumber = 0;
-/* Number of matches done */
-const matches = 0;
-/* List of opened cards */
-const openedCards = [];
-/* Timer */
-const time = 0;
-
-
-
 
 /*
  * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
+ *   - shuffle the list of cards using the provided "shuffle" method below*/
+
+
+ /*   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+
+// cards array holds all cards (MAYBE ONE ARRAY DIRECTLY)
+let card = document.getElementsByClassName("card");
+let cards = [...card];
+//The deck that contains the cards.
+const deck = document.querySelector(".deck");
+
+/* List of open cards */
+let openCards = [];
+/* List of matched cards */
+let matchedCards =[];
+/* Number of moves */
+let numberMoves = 0;
 
 
 
@@ -42,6 +43,7 @@ function shuffle(array) {
 
     return array;
 }
+
 
 
 /*
