@@ -15,7 +15,7 @@
 
 // cards array holds all cards (MAYBE ONE ARRAY DIRECTLY)
 let card = document.getElementsByClassName("card");
-let cards = [...card];
+let cardsList = [...card];
 //The deck that contains the cards.
 const deck = document.querySelector(".deck");
 
@@ -27,6 +27,33 @@ let matchedCards =[];
 let numberMoves = 0;
 
 
+
+
+
+/* Game start function */
+function gameStart() {
+	cardsList = shuffle(cardsList);
+
+	for (let i = 0; i < cardsList.length; i++) {
+		deck.innerHTML = "";
+		[].forEach.call(cardsList, function(addCards) {
+			deck.appendChild(addCards);
+		});
+
+		for (let j = 0; j < cardsList.length; j++) {
+			cardsList[j].classList.remove('open','show','match');
+		}
+	}
+}
+
+
+/* Show card when click on it */
+document.querySelector('.deck').addEventListener('click', function(event) {
+	if (event.target.nodeName === 'LI') {
+		event.target.classList.add('open', 'show');
+		openCards.push(event.target);
+	}
+});
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
