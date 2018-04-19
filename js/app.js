@@ -3,16 +3,6 @@
  */
 
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below*/
-
-
- /*   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-
 // cards array holds all cards (MAYBE ONE ARRAY DIRECTLY)
 let card = document.getElementsByClassName("card");
 let cardsList = [...card];
