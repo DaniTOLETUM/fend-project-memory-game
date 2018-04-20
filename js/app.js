@@ -1,3 +1,4 @@
+
 // cards array holds all cards (MAYBE ONE ARRAY DIRECTLY)
 let card = document.getElementsByClassName("card");
 let cardsList = [...card];
