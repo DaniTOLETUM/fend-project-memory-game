@@ -25,6 +25,9 @@ document.onload = gameStart();
 /* Game start function */
 function gameStart() {
 	cardsList = shuffle(cardsList);
+	numberMoves = 0;
+	matchedCards = [];
+	openCards = [];
 
 	for (let i = 0; i < cardsList.length; i++) {
 		deck.innerHTML = "";
@@ -37,6 +40,15 @@ function gameStart() {
 		}
 	}
 }
+
+
+/*Restart game when click on Restart button */
+const restart = document.querySelector('.restart');
+restart.addEventListener('click', function() {
+	console.log('restart button clicked');
+	gameStart();
+});
+
 
 
 /* Show card when click on it */
