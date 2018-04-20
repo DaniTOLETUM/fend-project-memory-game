@@ -1,18 +1,3 @@
-/*
- * Create a list that holds all of your cards
- */
-
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below*/
-
-
- /*   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-
 // cards array holds all cards (MAYBE ONE ARRAY DIRECTLY)
 let card = document.getElementsByClassName("card");
 let cardsList = [...card];
@@ -24,11 +9,17 @@ let openCards = [];
 /* List of matched cards */
 let matchedCards =[];
 /* Number of moves */
-let numberMoves = 0;
+var numberMoves = 0;
+
+/* Number of Stars */
+const stars = document.querySelector('.stars');
+const star = document.querySelector('li');
+const starIcon = document.getElementsByClassName('fa-star');
 
 
 
-
+/* Game start when page is loaded*/
+document.onload = gameStart();
 
 /* Game start function */
 function gameStart() {
@@ -52,9 +43,35 @@ document.querySelector('.deck').addEventListener('click', function(event) {
 	if (event.target.nodeName === 'LI') {
 		event.target.classList.add('open', 'show');
 		openCards.push(event.target);
+		movesConter();
 	}
 });
 
+
+
+/* Numer moves in two cards */
+function movesConter () {
+	numberMoves += 1;
+	//moves.textContent = numberMoves;
+	starRating();
+}
+
+
+/* Start Rating */
+function starRating() {
+	if (numberMoves === 10) {
+		console.log('you have made 10 moves');
+		stars.removeChild(star);
+	}
+	if (numberMoves ===25) {
+		console.log('you have made 30 moves');
+		stars.removeChild(star);
+	}
+	if (numberMoves === 35) {
+		console.log('you made too much moves');
+		stars.removeChild(star);
+	}
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
