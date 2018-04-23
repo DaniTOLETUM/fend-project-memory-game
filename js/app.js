@@ -7,10 +7,18 @@ const deck = document.querySelector(".deck");
 
 /* List of open cards */
 let openCards = [];
+/*Cards Opened at time */
+let opened = 0;
 /* List of matched cards */
 let matchedCards =[];
 /* Number of moves */
 var numberMoves = 0;
+/* Timer */
+let second = 0;
+let minute = 0;
+var timer = document.querySelector('.timer');
+var interval;
+
 
 /* Number of Stars */
 const stars = document.querySelector('.stars');
@@ -25,20 +33,27 @@ document.onload = gameStart();
 /* Game start function */
 function gameStart() {
 	cardsList = shuffle(cardsList);
-	numberMoves = 0;
-	matchedCards = [];
-	openCards = [];
+	console.log('game started');
 
 	for (let i = 0; i < cardsList.length; i++) {
 		deck.innerHTML = "";
 		[].forEach.call(cardsList, function(addCards) {
 			deck.appendChild(addCards);
 		});
-
-		for (let j = 0; j < cardsList.length; j++) {
-			cardsList[j].classList.remove('open','show','match');
-		}
+		cardsList[i].classList.remove('show', 'open', 'match');
 	}
+
+	/*Reset variables*/
+	numberMoves = 0;
+	opened = 0;
+	second = 0;
+	minute = 0;
+	matchedCards = [];
+	openCards = [];
+	/*Reset timer*/
+	var timer = document.querySelector('.timer');
+	timer.innerHTML="0 mins 0 secs";
+	clearInterval(interval);
 }
 
 
@@ -50,29 +65,89 @@ restart.addEventListener('click', function() {
 });
 
 
-
-/* Show card when click on it */
-document.querySelector('.deck').addEventListener('click', function(event) {
-	if (event.target.nodeName === 'LI') {
-		event.target.classList.add('open', 'show');
-		openCards.push(event.target);
-		movesConter();
-	}
-});
-
-
-
-/* Numer moves in two cards */
-function movesConter () {
-	numberMoves += 1;
-	//moves.textContent = numberMoves;
-	starRating();
+/*Function timer of the game */
+function Timer() {
+	interval = setInterval(function(){
+		timer.innerHTML = minute+'mins '+second+'secs';
+		second++;
+		if(secong == 60) {
+			minute++;
+			second=0;
+		}
+	}, 1000);
 }
 
 
+/* Numer moves while playing */
+function movesConter () {
+	console.log('function movesConter active');
+	numberMoves += 1;
+	if (numberMoves === 1) {
+		Timer();
+	}
+//	starRating();
+}
+
+
+
+
+/* Show card when click on it */
+document.querySelector('.deck').addEventListener('click', function(event) {
+if (event.target.nodeName === 'LI') {
+	console.log('number of moves' + numberMoves);
+    event.target.classList.add('open', 'show');
+    console.log(event.target);
+    openCards.push(event.target);
+    console.log(openCards.length);
+    movesConter();
+}
+if (openCards.length === 2 && (openCards[0].innerHTML !== openCards[1].innerHTML)) {
+	notMatch();
+
+}else if (openCards.length === 2 && (openCards[0].innerHTML == openCards[1].innerHTML)) {
+	match();
+}
+});
+
+
+/* Function when two cards don't match */
+function notMatch() {
+	console.log('function not match active');
+	setTimeout(function () {
+		openCards[0].classList.remove('open', 'show');
+		openCards[1].classList.remove('open', 'show');
+		openCards = [];
+	}, 1000);
+}
+
+/* Function when two cards match */
+function match() {
+	console.log('funciton match active');
+	openCards[0].classList.add('open', 'match');
+	openCards[1].classList.add('open', 'match');
+	matchedCards.push(openCards);
+	openCards = [];
+	console.log('number of cards matched' + matchedCards)
+	allMatched();
+}
+
+/* Function to know if all cards are matched */
+function allMatched() {
+	if (matchedCards.length === 16) {
+		gameOver();
+	}
+};
+
+
+
+/* Function when Game is Over */
+function gameOver() {
+	console.log('Game Over my Friend');
+}
+
 /* Start Rating */
 function starRating() {
-	if (numberMoves === 10) {
+	if (numberMoves === 16) {
 		console.log('you have made 10 moves');
 		stars.removeChild(star);
 	}

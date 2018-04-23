@@ -81,6 +81,7 @@ h1 {
     font-size: 33px;
 }
 
+
 /*
  * Styles for the Score Panel
  */
@@ -103,7 +104,16 @@ h1 {
     display: inline-block;
 }
 
+.star-no-color {
+    color: lightgray;
+}
+
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+.timer {
+    display: inline-block;
+    margin: 0 1rem;
 }
