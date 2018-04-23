@@ -13,11 +13,13 @@ let opened = 0;
 let matchedCards =[];
 /* Number of moves */
 var numberMoves = 0;
+var moves = document.querySelector('.moves');
 /* Timer */
 let second = 0;
 let minute = 0;
 var timer = document.querySelector('.timer');
 var interval;
+
 
 
 /* Number of Stars */
@@ -52,8 +54,11 @@ function gameStart() {
 	openCards = [];
 	/*Reset timer*/
 	var timer = document.querySelector('.timer');
-	timer.innerHTML="0 mins 0 secs";
+	timer.innerHTML='0 mins 0 secs';
 	clearInterval(interval);
+	/*Reset moves*/
+	moves = document.querySelector('.moves');
+	moves.innerHTML='0 Move(s)';
 }
 
 
@@ -82,6 +87,7 @@ function Timer() {
 function movesConter () {
 	console.log('function movesConter active');
 	numberMoves += 1;
+	moves.innerHTML = numberMoves+' Move(s)';
 	if (numberMoves === 1) {
 		Timer();
 	}
