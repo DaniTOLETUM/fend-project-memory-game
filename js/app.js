@@ -70,9 +70,9 @@ function Timer() {
 	interval = setInterval(function(){
 		timer.innerHTML = minute+'mins '+second+'secs';
 		second++;
-		if(secong == 60) {
-			minute++;
-			second=0;
+		if (second === 60) {
+			minute ++;
+			second = 0;
 		}
 	}, 1000);
 }
@@ -85,7 +85,6 @@ function movesConter () {
 	if (numberMoves === 1) {
 		Timer();
 	}
-//	starRating();
 }
 
 
