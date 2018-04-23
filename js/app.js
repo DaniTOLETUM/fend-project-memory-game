@@ -23,8 +23,6 @@ var interval;
 
 
 /* Number of Stars */
-//const stars = document.querySelector('.stars');
-//const star = document.querySelector('li');
 const starIcon = document.getElementsByClassName('fa-star');
 
 
@@ -117,17 +115,7 @@ function starRating() {
 			}
 		}
 	}
-	/*if (numberMoves ===25) {
-		console.log('you have made 30 moves');
-		stars.removeChild(star);
-	}
-	if (numberMoves === 35) {
-		console.log('you made too much moves');
-		stars.removeChild(star);
-	}*/
 }
-
-
 
 
 /* Show card when click on it */
@@ -165,9 +153,12 @@ function match() {
 	openCards[0].classList.add('open', 'match');
 	openCards[1].classList.add('open', 'match');
 	matchedCards.push(openCards);
+	if (matchedCards.length === 16) {
+		gameOver();
+	} else {
 	openCards = [];
-	console.log('number of cards matched' + matchedCards)
-	allMatched();
+	console.log('number of cards matched' + matchedCards);
+	}
 }
 
 /* Function to know if all cards are matched */
