@@ -23,8 +23,8 @@ var interval;
 
 
 /* Number of Stars */
-const stars = document.querySelector('.stars');
-const star = document.querySelector('li');
+//const stars = document.querySelector('.stars');
+//const star = document.querySelector('li');
 const starIcon = document.getElementsByClassName('fa-star');
 
 
@@ -35,16 +35,6 @@ document.onload = gameStart();
 /* Game start function */
 function gameStart() {
 	cardsList = shuffle(cardsList);
-	console.log('game started');
-
-	for (let i = 0; i < cardsList.length; i++) {
-		deck.innerHTML = "";
-		[].forEach.call(cardsList, function(addCards) {
-			deck.appendChild(addCards);
-		});
-		cardsList[i].classList.remove('show', 'open', 'match');
-	}
-
 	/*Reset variables*/
 	numberMoves = 0;
 	opened = 0;
@@ -59,6 +49,21 @@ function gameStart() {
 	/*Reset moves*/
 	moves = document.querySelector('.moves');
 	moves.innerHTML='0 Move(s)';
+	/*Reset stars*/
+	for (var i = 0; i < starIcon.length; i++){
+		starIcon[i].style.visibility = 'visible';
+	};
+	console.log('game started');
+
+	for (let i = 0; i < cardsList.length; i++) {
+		deck.innerHTML = "";
+		[].forEach.call(cardsList, function(addCards) {
+			deck.appendChild(addCards);
+		});
+		cardsList[i].classList.remove('show', 'open', 'match');
+	};
+
+
 }
 
 
@@ -91,6 +96,35 @@ function movesConter () {
 	if (numberMoves === 1) {
 		Timer();
 	}
+	starRating();
+}
+
+
+/* Start Rating */
+function starRating() {
+	if (numberMoves > 17 && numberMoves < 25) {
+		console.log('you have made 18 moves');
+		for ( i = 0; i < 3; i++){
+			if (i > 1){
+				starIcon[i].style.visibility = 'collapse';
+			}
+		}
+	}
+	else if (numberMoves > 26) {
+		for (i = 0; i < 3; i++) {
+			if (i > 0){
+				starIcon[i].style.visibility = 'collapse';
+			}
+		}
+	}
+	/*if (numberMoves ===25) {
+		console.log('you have made 30 moves');
+		stars.removeChild(star);
+	}
+	if (numberMoves === 35) {
+		console.log('you made too much moves');
+		stars.removeChild(star);
+	}*/
 }
 
 
@@ -150,21 +184,7 @@ function gameOver() {
 	console.log('Game Over my Friend');
 }
 
-/* Start Rating */
-function starRating() {
-	if (numberMoves === 16) {
-		console.log('you have made 10 moves');
-		stars.removeChild(star);
-	}
-	if (numberMoves ===25) {
-		console.log('you have made 30 moves');
-		stars.removeChild(star);
-	}
-	if (numberMoves === 35) {
-		console.log('you made too much moves');
-		stars.removeChild(star);
-	}
-}
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {

@@ -102,11 +102,9 @@ h1 {
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+    color: orange;
 }
 
-.star-no-color {
-    color: lightgray;
-}
 
 .score-panel .restart {
     float: right;
