@@ -18,12 +18,14 @@ var moves = document.querySelector('.moves');
 let second = 0;
 let minute = 0;
 var timer = document.querySelector('.timer');
+var finalTime = 0;
 var interval;
-
-
-
 /* Number of Stars */
 const starIcon = document.getElementsByClassName('fa-star');
+var starRate = 0;
+/*Declare modal and close x */
+let modal = document.getElementById('finalMessage');
+let closeX = document.querySelector('.close');
 
 
 
@@ -44,6 +46,7 @@ function gameStart() {
 	var timer = document.querySelector('.timer');
 	timer.innerHTML='0 mins 0 secs';
 	clearInterval(interval);
+	finalTime = 0;
 	/*Reset moves*/
 	moves = document.querySelector('.moves');
 	moves.innerHTML='0 Move(s)';
@@ -153,26 +156,41 @@ function match() {
 	openCards[0].classList.add('open', 'match');
 	openCards[1].classList.add('open', 'match');
 	matchedCards.push(openCards);
-	if (matchedCards.length === 16) {
+	openCards = [];
+	if (matchedCards.length === 8) {
 		gameOver();
 	} else {
-	openCards = [];
 	console.log('number of cards matched' + matchedCards);
 	}
 }
 
-/* Function to know if all cards are matched */
-function allMatched() {
-	if (matchedCards.length === 16) {
-		gameOver();
-	}
-};
-
-
-
 /* Function when Game is Over */
 function gameOver() {
 	console.log('Game Over my Friend');
+	/*Getting final time */
+	finalTime = timer.innerHTML;
+	clearInterval(interval);
+	console.log(finalTime);
+	/*Stop Moves Counter */
+	document.querySelector('.deck').removeEventListener('click', function(event){
+		return;
+	});
+	/*Show message*/
+	modal.classList.add('show');
+	starRate = document.querySelector('.stars').innerHTML;
+	document.getElementById('finalMove').innerHTML = numberMoves;
+	document.getElementById('starRating').innerHTML = starRate;
+	document.getElementById('totalTime').innerHTML = finalTime;
+	/* if click on close x*/
+	closeX.addEventListener('click', function(){
+		modal.classList.remove('show');
+	})
+	/*IF click on Play Again*/
+	playAgain = document.getElementById('playAgain');
+	playAgain.addEventListener('click', function(){
+		gameStart();
+	})
+
 }
 
 
