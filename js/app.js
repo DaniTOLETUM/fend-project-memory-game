@@ -119,13 +119,15 @@ function starRating() {
 
 /* Show card when click on it */
 document.querySelector('.deck').addEventListener('click', function(event) {
-if (event.target.nodeName === 'LI') {
-	console.log('number of moves' + numberMoves);
-    event.target.classList.add('open', 'show');
-    console.log(event.target);
-    openCards.push(event.target);
-    console.log(openCards.length);
-    movesConter();
+if (openCards.length !== 2) {
+	if (event.target.nodeName === 'LI') {
+		console.log('number of moves' + numberMoves);
+    	event.target.classList.add('open', 'show');
+    	console.log(event.target);
+    	openCards.push(event.target);
+    	console.log(openCards.length);
+    	movesConter();
+    }
 }
 if (openCards.length === 2 && (openCards[0].innerHTML !== openCards[1].innerHTML)) {
 	notMatch();
