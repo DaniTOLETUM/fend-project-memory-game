@@ -23,10 +23,6 @@ var interval;
 /* Number of Stars */
 const starIcon = document.getElementsByClassName('fa-star');
 var starRate = 0;
-/*Declare modal and close x */
-let modal = document.getElementById('finalMessage');
-let closeX = document.querySelector('.close');
-
 
 
 /* Game start when page is loaded*/
@@ -175,7 +171,11 @@ function gameOver() {
 	document.querySelector('.deck').removeEventListener('click', function(event){
 		return;
 	});
-	/*Show message*/
+	/*Show Modal message*/
+	/*Declare modal and close x */
+	var modal = document.getElementById('myModal');
+	var closeX = document.querySelector('.close');
+
 	modal.classList.add('show');
 	starRate = document.querySelector('.stars').innerHTML;
 	document.getElementById('finalMove').innerHTML = numberMoves;
@@ -188,6 +188,7 @@ function gameOver() {
 	/*IF click on Play Again*/
 	playAgain = document.getElementById('playAgain');
 	playAgain.addEventListener('click', function(){
+		modal.classList.remove('show');
 		gameStart();
 	})
 

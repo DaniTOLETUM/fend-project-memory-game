@@ -119,6 +119,11 @@ h1 {
  * Styles for the Modal
  */
 
+ #myModal {
+    display: hidden;
+ }
+
+
  .modal {
     position: fixed;
     top: 0;
@@ -132,7 +137,7 @@ h1 {
 }
 
 .modal:target {
-    visibility: visible;
+    visibility: hidden;
     opacity: 1;
 }
   
@@ -149,7 +154,8 @@ h1 {
   
 .message h1 {
     margin-top: 0;
-    color: #333;
+    text-align: center;
+    color: orange;
     font-family: Tahoma, Arial, sans-serif;
 }
 
@@ -175,22 +181,20 @@ h1 {
 }
 
 .show {
-    visibility: visible !important;
-    opacity: 100 !important;
+    visibility: visible;
+    opacity: 100;
 }
 
-#starRating li {
-    display: inline-block;
-}
 
 #playAgain {
-    background-color: #141214;
-    padding: 0.7rem 1rem;
-    font-size: 1.1rem;
+    background-color: black;
+    padding: 0.7rem;
+    font-size: 1rem;
     display: block;
     margin: 0 auto;
-    width: 50%;
+    width: 15%;
     font-family: 'Gloria Hallelujah', cursive;
-    color: #ffffff;
-    border-radius: 5px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
 }
